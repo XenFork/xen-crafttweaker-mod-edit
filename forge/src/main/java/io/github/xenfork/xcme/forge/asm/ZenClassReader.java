@@ -1,4 +1,4 @@
-package io.github.xenfork.xcme.forge;
+package io.github.xenfork.xcme.forge.asm;
 
 import org.objectweb.asm.ClassReader;
 

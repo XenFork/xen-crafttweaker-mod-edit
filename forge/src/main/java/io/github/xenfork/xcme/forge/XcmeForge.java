@@ -1,19 +1,18 @@
 package io.github.xenfork.xcme.forge;
 
+import io.github.xenfork.xcme.forge.asm.ZenClassReader;
+import io.github.xenfork.xcme.forge.asm.ZenClassVisitor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fml.loading.moddiscovery.ModInfo;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
-import java.util.stream.Stream;
 
 import static org.objectweb.asm.Opcodes.ASM9;
 
@@ -22,6 +21,7 @@ import static org.objectweb.asm.Opcodes.ASM9;
 public class XcmeForge {
     public static final String MOD_ID = "xcme";
     public static final Map<String, Path> jarFind = new HashMap<>();
+
     public XcmeForge() {
         for (ModInfo mod : FMLLoader.getLoadingModList().getMods()) {
             Path filePath = mod.getOwningFile().getFile().getFilePath().toAbsolutePath();
@@ -41,12 +41,7 @@ public class XcmeForge {
 
                         }
                     }
-
                 } catch (IOException ignored) {
-
-                }
-                for (String s : ZenClassVisitor.zenRegisterClassName) {
-                    System.out.println(s);
                 }
             }
         }
